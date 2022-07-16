@@ -11,7 +11,7 @@ from freqtrade import constants
 from freqtrade.configuration.check_exchange import check_exchange
 from freqtrade.configuration.deprecated_settings import process_temporary_deprecated_settings
 from freqtrade.configuration.directory_operations import create_datadir, create_userdata_dir
-from freqtrade.configuration.environment_vars import enironment_vars_to_dict
+from freqtrade.configuration.environment_vars import environment_vars_to_dict
 from freqtrade.configuration.load_config import load_file, load_from_files
 from freqtrade.enums import NON_UTIL_MODES, TRADING_MODES, CandleType, RunMode, TradingMode
 from freqtrade.exceptions import OperationalException
@@ -68,7 +68,8 @@ class Configuration:
         config: Dict[str, Any] = load_from_files(self.args.get("config", []))
 
         # Load environment variables
-        env_data = enironment_vars_to_dict()
+        env_data = env
+        ironment_vars_to_dict()
         config = deep_merge_dicts(env_data, config)
 
         # Normalize config
