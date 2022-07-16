@@ -40,13 +40,12 @@ def flat_vars_to_nested_dict(env_dict: Dict[str, Any], prefix: str) -> Dict[str,
             logger.info(f"Loading variable '{env_var}'")
             key = env_var.replace(prefix, '')
             for k in reversed(key.split('__')):
-                val = {k.lower(): get_var_typed(val)
-                       if type(val) != dict and k not in no_convert else val}
+                val = {k.lower(): get_var_typed(val) if type(val) != dict and k not in no_convert else val}
             relevant_vars = deep_merge_dicts(val, relevant_vars)
     return relevant_vars
 
 
-def enironment_vars_to_dict() -> Dict[str, Any]:
+def environment_vars_to_dict() -> Dict[str, Any]:
     """
     Read environment variables and return a nested dict for relevant variables
     Relevant variables must follow the FREQTRADE__{section}__{key} pattern
